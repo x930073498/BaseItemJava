@@ -1,4 +1,4 @@
-package com.x930073498.basyitemjava;
+package com.x930073498.baseitemjava;
 
 import android.databinding.ObservableArrayList;
 import android.databinding.ViewDataBinding;

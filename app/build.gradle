@@ -7,7 +7,7 @@ android {
         enabled=true
     }
     defaultConfig {
-        applicationId "com.x930073498.basyitemjava"
+        applicationId "com.x930073498.baseitemjava"
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1

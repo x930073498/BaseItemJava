@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BasyItemJava.iml" filepath="$PROJECT_DIR$/BasyItemJava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BaseItemJava.iml" filepath="$PROJECT_DIR$/BaseItemJava.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/baseitemlib/baseitemlib.iml" filepath="$PROJECT_DIR$/baseitemlib/baseitemlib.iml" />
     </modules>

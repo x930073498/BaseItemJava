@@ -21,7 +21,6 @@ import java.util.List;
  */
 
 public class BaseAdapter extends RecyclerView.Adapter<BaseHolder> implements ListAdapter {
-    private static final String TAG = "BaseAdapter";
 
     private class BaseOnListChangedCallback extends ObservableList.OnListChangedCallback<ObservableArrayList<BaseItem>> {
 
@@ -89,14 +88,12 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseHolder> implements Lis
 
     @Override
     public BaseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Log.d(TAG, "onCreateViewHolder: viewType=" + viewType);
         View view = LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
         return new BaseHolder(view);
     }
 
     @Override
     public int getItemViewType(int position) {
-        Log.d(TAG, "getItemViewType: isFromList=" + isFromList);
         if (isFromList) return getListViewType(position);
         else return getRecyclerViewType(position);
     }
@@ -265,7 +262,6 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseHolder> implements Lis
         BaseItem temp = data.get(position);
         if (temp == null) return -1;
 
-        Log.d(TAG, "getRecyclerViewType: layoutId=" + temp.getLayoutId());
         return temp.getLayoutId();
     }
 }

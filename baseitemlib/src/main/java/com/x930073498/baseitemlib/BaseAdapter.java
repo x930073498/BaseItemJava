@@ -7,6 +7,7 @@ import android.databinding.ObservableList;
 import android.databinding.OnRebindCallback;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,8 @@ import java.util.List;
  */
 
 public class BaseAdapter extends RecyclerView.Adapter<BaseHolder> implements ListAdapter {
+    private static final String TAG = "BaseAdapter";
+
     private class BaseOnListChangedCallback extends ObservableList.OnListChangedCallback<ObservableArrayList<BaseItem>> {
 
         @Override
@@ -78,17 +81,26 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseHolder> implements Lis
 
     private boolean dataObservable = true;
     private BaseOnListChangedCallback callback = new BaseOnListChangedCallback();
-    private List< ?extends BaseItem> data = new ObservableArrayList<>();
+    private List<? extends BaseItem> data = new ObservableArrayList<>();
     private SparseIntArray listViewTypeMap = new SparseIntArray();
-    private DefaultOnRebindCallback callBack=new DefaultOnRebindCallback();
+    private DefaultOnRebindCallback callBack = new DefaultOnRebindCallback();
     private boolean isFromList = false;
     private DataSetObservable mDataObservable = new DataSetObservable();
 
     @Override
     public BaseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.d(TAG, "onCreateViewHolder: viewType=" + viewType);
         View view = LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
         return new BaseHolder(view);
     }
+
+    @Override
+    public int getItemViewType(int position) {
+        Log.d(TAG, "getItemViewType: isFromList=" + isFromList);
+        if (isFromList) return getListViewType(position);
+        else return getRecyclerViewType(position);
+    }
+
 
     @Override
     public void onBindViewHolder(BaseHolder holder, int position) {
@@ -252,6 +264,8 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseHolder> implements Lis
         if (data == null) return -1;
         BaseItem temp = data.get(position);
         if (temp == null) return -1;
+
+        Log.d(TAG, "getRecyclerViewType: layoutId=" + temp.getLayoutId());
         return temp.getLayoutId();
     }
 }

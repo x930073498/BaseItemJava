@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BaseItemJava</string>
+    <string name="title_activity_main">RecyclerView Activity</string>
 </resources>

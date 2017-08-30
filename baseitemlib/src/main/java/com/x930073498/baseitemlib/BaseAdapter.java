@@ -78,7 +78,7 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseHolder> implements Lis
 
     private boolean dataObservable = true;
     private BaseOnListChangedCallback callback = new BaseOnListChangedCallback();
-    private List<BaseItem> data = new ObservableArrayList<>();
+    private List< ?extends BaseItem> data = new ObservableArrayList<>();
     private SparseIntArray listViewTypeMap = new SparseIntArray();
     private DefaultOnRebindCallback callBack=new DefaultOnRebindCallback();
     private boolean isFromList = false;
@@ -209,11 +209,11 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseHolder> implements Lis
         }
     }
 
-    public List<BaseItem> getData() {
+    public List<? extends BaseItem> getData() {
         return data;
     }
 
-    public void setData(List<BaseItem> data) {
+    public void setData(List<? extends BaseItem> data) {
         if (data == null) {
             setData(new ObservableArrayList<BaseItem>());
             return;

@@ -29,7 +29,7 @@ List<TestItem> data=new ObservableArrayList<>();
 
         @Override
         public int getVariableId() {
-            return 0;
+            return  0;
         }
 
         @Override

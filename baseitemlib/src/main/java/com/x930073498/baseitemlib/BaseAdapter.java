@@ -7,7 +7,6 @@ import android.databinding.ObservableList;
 import android.databinding.OnRebindCallback;
 import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,6 +92,16 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseHolder> implements Lis
     }
 
     @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        if (data == null) return;
+        for (BaseItem item : data
+                ) {
+            item.attachToParent(recyclerView);
+        }
+    }
+
+    @Override
     public int getItemViewType(int position) {
         if (isFromList) return getListViewType(position);
         else return getRecyclerViewType(position);
@@ -160,6 +169,7 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseHolder> implements Lis
     public View getView(int position, View convertView, ViewGroup parent) {
         BaseHolder holder = (BaseHolder) convertView.getTag();
         BaseItem item = data.get(position);
+        item.attachToParent(parent);
         int layoutId = item.getLayoutId();
         if (holder == null) {
             holder = createListViewHolder(parent, layoutId);

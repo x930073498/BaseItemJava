@@ -1,12 +1,15 @@
 package com.x930073498.baseitemjava.dto;
 
 import android.databinding.ViewDataBinding;
+import android.view.View;
 
 import com.x930073498.baseitemjava.BR;
 import com.x930073498.baseitemjava.R;
 import com.x930073498.baseitemlib.BaseItem;
 
-public class RecyclerItem implements BaseItem {
+import java.io.Serializable;
+
+public class RecyclerItem implements BaseItem ,Serializable {
     private String name;
 
     public String getName() {
@@ -15,6 +18,16 @@ public class RecyclerItem implements BaseItem {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public void attachToParent(View view) {
+
+    }
+
+    @Override
+    public void detachFromParent(View view) {
+
     }
 
     @Override

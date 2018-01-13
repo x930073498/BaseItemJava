@@ -19,7 +19,7 @@ import java.util.List;
  * Created by Administrator on 2017/8/28 0028.
  */
 
-public class BaseAdapter extends RecyclerView.Adapter<BaseHolder> implements ListAdapter {
+public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ListAdapter {
 
     private class BaseOnListChangedCallback extends ObservableList.OnListChangedCallback<ObservableArrayList<BaseItem>> {
 
@@ -86,7 +86,7 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseHolder> implements Lis
     private DataSetObservable mDataObservable = new DataSetObservable();
 
     @Override
-    public BaseHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(viewType, parent, false);
         return new BaseHolder(view);
     }
@@ -109,13 +109,18 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseHolder> implements Lis
 
 
     @Override
-    public void onBindViewHolder(BaseHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
         BaseItem item = getItem(position);
-        if (holder.getBaseItem() == null) {
-            bindViewHolder(holder, item, position);
-        } else {
-            bindViewHolder(holder, holder.getBaseItem(), position);
+        if (holder instanceof BaseHolder){
+            BaseHolder baseHolder= (BaseHolder) holder;
+            if (baseHolder.getBaseItem() == null) {
+                bindViewHolder(baseHolder, item, position);
+            } else {
+                bindViewHolder(baseHolder, baseHolder.getBaseItem(), position);
+            }
         }
+
     }
 
     private void bindViewHolder(BaseHolder holder, BaseItem item, int position) {
@@ -167,17 +172,25 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseHolder> implements Lis
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        BaseHolder holder = (BaseHolder) convertView.getTag();
-        BaseItem item = data.get(position);
-        item.attachToParent(parent);
-        int layoutId = item.getLayoutId();
-        if (holder == null) {
-            holder = createListViewHolder(parent, layoutId);
-            holder.itemView.setTag(holder);
+        Object tag;
+        if ((tag=convertView.getTag())==null||tag instanceof BaseHolder){
+            BaseHolder holder = (BaseHolder) convertView.getTag();
+            BaseItem item = data.get(position);
+            item.attachToParent(parent);
+            int layoutId = item.getLayoutId();
+            if (holder == null) {
+                holder = createListViewHolder(parent, layoutId);
+                holder.itemView.setTag(holder);
+            }
+            holder.setBaseItem(item);
+            onBindViewHolder(holder, position);
+            return holder.itemView;
         }
-        holder.setBaseItem(item);
-        onBindViewHolder(holder, position);
-        return holder.itemView;
+        return  bindView(position, convertView, parent);
+
+    }
+    public View bindView(int position, View convertView, ViewGroup parent){
+        return null;
     }
 
     private BaseHolder createListViewHolder(ViewGroup parent, int layoutId) {

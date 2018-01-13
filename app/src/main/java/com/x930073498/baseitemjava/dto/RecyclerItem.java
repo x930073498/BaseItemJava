@@ -25,10 +25,7 @@ public class RecyclerItem implements BaseItem ,Serializable {
 
     }
 
-    @Override
-    public void detachFromParent(View view) {
 
-    }
 
     @Override
     public int getLayoutId() {

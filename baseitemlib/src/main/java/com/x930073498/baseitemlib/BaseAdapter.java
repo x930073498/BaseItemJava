@@ -21,6 +21,15 @@ import java.util.List;
 
 public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements ListAdapter {
 
+    private boolean dataObservable = true;
+    private BaseOnListChangedCallback callback = new BaseOnListChangedCallback();
+    private List<? extends BaseItem> data = new ObservableArrayList<>();
+    private SparseIntArray listViewTypeMap = new SparseIntArray();
+    private DefaultOnRebindCallback callBack = new DefaultOnRebindCallback();
+    private boolean isFromList = false;
+    private DataSetObservable mDataObservable = new DataSetObservable();
+
+
     private class BaseOnListChangedCallback extends ObservableList.OnListChangedCallback<ObservableArrayList<BaseItem>> {
 
         @Override
@@ -77,13 +86,6 @@ public class BaseAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
         }
     }
 
-    private boolean dataObservable = true;
-    private BaseOnListChangedCallback callback = new BaseOnListChangedCallback();
-    private List<? extends BaseItem> data = new ObservableArrayList<>();
-    private SparseIntArray listViewTypeMap = new SparseIntArray();
-    private DefaultOnRebindCallback callBack = new DefaultOnRebindCallback();
-    private boolean isFromList = false;
-    private DataSetObservable mDataObservable = new DataSetObservable();
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

@@ -2,10 +2,10 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "26.0.1"
-dataBinding{
-    enabled=true
-}
+    buildToolsVersion '27.0.3'
+    dataBinding {
+        enabled = true
+    }
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 25

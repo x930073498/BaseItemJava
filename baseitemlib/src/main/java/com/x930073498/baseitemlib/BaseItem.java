@@ -12,12 +12,17 @@ import android.view.View;
 public interface BaseItem {
     int NO_ID = -1;
 
-    void attachToParent(View view);
+    default void attachToParent(View view) {
+    }
 
     @LayoutRes
     int getLayoutId();
 
-    int getVariableId();
+    default int getVariableId() {
+        return NO_ID;
+    }
 
-    void onBindView(ViewDataBinding binding, int position);
+    default void onBindView(ViewDataBinding binding, int position) {
+
+    }
 }

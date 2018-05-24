@@ -1,12 +1,9 @@
-package com.x930073498.baseitemlib.wrapper;
+package com.x930073498.baseitemlib;
 
 import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
-
-import com.x930073498.baseitemlib.BaseAdapter;
-import com.x930073498.baseitemlib.BaseItem;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.x930073498.baseitemlib.wrapper;
+package com.x930073498.baseitemlib;
 
 import android.support.annotation.LayoutRes;
 

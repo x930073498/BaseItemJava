@@ -32,11 +32,8 @@ dependencies {
     })
     api project(':baseitemlib')
     implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     //    compile 'com.github.x930073498:BaseItemJava:+'
     testImplementation 'junit:junit:4.12'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
-}
-repositories {
-    maven { url = 'https://www.jitpack.io' }
 }
